@@ -36,7 +36,7 @@ public class ComicAdsViewer extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0) {
+        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0 && getIntent().getIntExtra("currentViewMode",0) == 0) {
             mNativeAd.loadAd();
         }
     }
@@ -44,7 +44,7 @@ public class ComicAdsViewer extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0) {
+        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0 && getIntent().getIntExtra("currentViewMode",0) == 0) {
             mNativeAd.loadAd();
         }
     }
@@ -68,7 +68,7 @@ public class ComicAdsViewer extends AppCompatActivity {
         mTextViewDate.setText(getIntent().getStringExtra("date"));
         mContainer = findViewById(R.id.single_integration_container);
 
-        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0) {
+        if(getIntent().getIntExtra("comicsOpened",1)%5 == 0 && getIntent().getIntExtra("currentViewMode",0) ==0) {
 
             mNativeAd = new ANNativeAd(this, "2Pwo1otj1C5T8y6Uuz9v-xbY1aB09x8rWKvsJ-HI");
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
@@ -93,6 +93,7 @@ public class ComicAdsViewer extends AppCompatActivity {
 
                     // the above method only creates the ad view, you need to add the view to your container as desired
                     mContainer.addView(nativeAdView);
+                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
 
                 }
 

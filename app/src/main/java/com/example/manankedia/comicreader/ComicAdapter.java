@@ -64,7 +64,7 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ComicViewHol
                 intent.putExtra("date",mComics.get(position).getDate());
                 intent.putExtra("alt", mComics.get(position).getAlt());
                 SharedPreferences sharedPreferences = mCtx.getSharedPreferences("ViewMode", mCtx.MODE_PRIVATE);
-
+                intent.putExtra("currentViewMode",sharedPreferences.getInt("currentViewMode",0));
                 int x = sharedPreferences.getInt("comicsOpened",0);
                 if(sharedPreferences.getInt("currentViewMode",0) == 0){
                     x++;
